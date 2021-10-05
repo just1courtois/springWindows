@@ -15,13 +15,13 @@ public class Room {
     private String name;
 
     @Column(nullable = false)
-    private int floor;
+    private Integer floor;
 
     @Column(nullable = true)
-    private double current_temperature;
+    private Double current_temperature;
 
     @Column(nullable = true)
-    private double target_temperature;
+    private Double target_temperature;
 
     @OneToMany(mappedBy = "room")  //Parent of Heater
     private Set<Heater> heaters;

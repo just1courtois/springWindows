@@ -22,6 +22,7 @@ public class WindowDaoCustomImpl implements WindowDaoCustom {
                 .getResultList();
     }
 
+
     @Override
     public void deleteByRoom(Long id) {
         String jpql = "delete from Window w where room_id = :room_id";
