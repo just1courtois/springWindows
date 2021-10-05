@@ -15,7 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 class DummyUserServiceTest {
 
     @Configuration // (2)
-    @ComponentScan("com.emse.spring.faircop.hello")
+    @ComponentScan("com.emse.spring.faircorp.hello")
     public static class DummyUserServiceTestConfig{}
 
     @Autowired // (3)
