@@ -29,14 +29,18 @@ public class Room {
     @OneToMany(mappedBy = "room")
     private Set<Window> windows;
 
+    @ManyToOne //child of Building
+    private Building building ;//define building
+
 
 
     public Room() {
     }
 
-    public Room(String name, int floor) {
+    public Room(String name, int floor, Building building) {
         this.name = name;
         this.floor = floor;
+        this.building = building;
     }
 
     public Long getId() {
@@ -53,6 +57,14 @@ public class Room {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setFloor(Integer floor) {
+        this.floor = floor;
+    }
+
+    public Integer getFloor() {
+        return floor;
     }
 
     public double getCurrent_temperature() {
@@ -77,5 +89,13 @@ public class Room {
 
     public Set<Heater> getHeaters() {
         return heaters;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
+    }
+
+    public Building getBuilding() {
+        return building;
     }
 }

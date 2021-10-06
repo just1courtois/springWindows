@@ -20,6 +20,9 @@ class WindowDaoTest {
     @Autowired
     private  HeaterDao heaterDao;
 
+    @Autowired
+    private BuildingDao buildingDao;
+
     @Test//tested
     public void shouldFindAHeater() {
         Heater heater = heaterDao.getById(-10L);
@@ -64,4 +67,15 @@ class WindowDaoTest {
         Assertions.assertThat(result).isEmpty();
 
     }
+
+    /*@Test
+    public void shouldFindAllWindowsOfTheBuilding() {
+        Building building = buildingDao.getById(-10L);
+        List<Long> roomIds = building.getRooms().stream().map(Room::getId).collect(Collectors.toList());
+        Assertions.assertThat(roomIds.size()).isEqualTo(2);
+
+        buildingDao.findAllWindows(-10L);
+        List<Window> result = windowDao.findAllById(roomIds);
+        Assertions.assertThat(result.size()).isEqualTo(4);
+    }*/
 }
