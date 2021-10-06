@@ -47,7 +47,6 @@ class WindowDaoTest {
         Assertions.assertThat(result).isEmpty();
     }
 
-
     @Test //tested
     public void shouldFindARoom() {
         Room room = roomDao.getById(-10L);
