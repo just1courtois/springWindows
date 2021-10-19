@@ -34,7 +34,7 @@ public class Room {
 
 
 
-    public Room(String name, Building building) {
+    public Room() {
     }
 
     public Room(String name, int floor, Building building) {

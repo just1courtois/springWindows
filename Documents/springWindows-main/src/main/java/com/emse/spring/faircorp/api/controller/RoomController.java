@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/hello")
+@RequestMapping("/api/rooms")
 @Transactional
 public class RoomController {
     private final RoomDao roomDao;
@@ -38,6 +38,7 @@ public class RoomController {
         return roomDao.findAll().stream().map(RoomDto::new).collect(Collectors.toList());  // (6)
     }
 
+/*
     @PostMapping // (8)
     public RoomDto create(@RequestBody RoomDto dto) {
         // WindowDto must always contain the window room
@@ -52,18 +53,19 @@ public class RoomController {
         }
         return new RoomDto(room);
     }
+*/
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/api/rooms/{id}")
     public RoomDto findById(@PathVariable Long id) {
         return roomDao.findById(id).map(RoomDto::new).orElse(null); // (7)
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/api/rooms/{id}")
     public void delete(@PathVariable Long id) {
         roomDao.deleteById(id);
     }
 
-    @PutMapping(path = "/rooms/{room_id}/switch")
+    @PutMapping(path = "/api/rooms/{room_id}/switchWindowsOn")
     public RoomDto switchWindowsStatusToOpen(@PathVariable Long room_id) {
         List<Window> windows = roomDao.findAllWindows(room_id);
         for (Window window : windows) {
@@ -72,7 +74,7 @@ public class RoomController {
         return new RoomDto((Room) windows);
     }
 
-    @PutMapping(path = "/rooms/{room_id}/switch")
+    @PutMapping(path = "/api/rooms/{room_id}/switchWindowsOff")
     public RoomDto switchWindowsStatusToCLosed(@PathVariable Long room_id) {
         List<Window> windows = roomDao.findAllWindows(room_id);
         for (Window window : windows) {
@@ -81,7 +83,7 @@ public class RoomController {
         return new RoomDto((Room) windows);
     }
 
-    @PutMapping(path = "/rooms/{room_id}/switch")
+    @PutMapping(path = "/api/rooms/{room_id}/switchHeaterOn")
     public RoomDto switchHeatersStatusToOn(@PathVariable Long room_id) {
         List<Heater> heaters = roomDao.findAllHeaters(room_id);
         for (Heater heater : heaters) {
@@ -90,7 +92,7 @@ public class RoomController {
         return new RoomDto((Room) heaters);
     }
 
-    @PutMapping(path = "/rooms/{room_id}/switch")
+    @PutMapping(path = "/rooms/{room_id}/switchHeaterOff")
     public RoomDto switchHeatersStatusToOff(@PathVariable Long room_id) {
         List<Heater> heaters = roomDao.findAllHeaters(room_id);
         for (Heater heater : heaters) {

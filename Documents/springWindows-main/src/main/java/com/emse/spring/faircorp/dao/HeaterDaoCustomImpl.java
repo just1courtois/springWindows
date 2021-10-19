@@ -13,9 +13,11 @@ public class HeaterDaoCustomImpl implements  HeaterDaoCustom{
 
     @Override
     public void deleteByRoom(Long id) {
-        String jpql = "delete from Heater h where heater_id = :heater_id";
+        String jpql = "delete from Heater h where h.room.id= :room_id";
         em.createQuery(jpql)
-                .setParameter("heater_id", id)
+                .setParameter("room_id", id)
                 .executeUpdate();
     }
+
+
 }
