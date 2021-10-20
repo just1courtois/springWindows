@@ -62,7 +62,7 @@ public class RoomController {
 
     @DeleteMapping(path = "/api/rooms/{id}")
     public void delete(@PathVariable Long id) {
-        roomDao.deleteById(id);
+        roomDao.deleteRoom(id);
     }
 
     @PutMapping(path = "/api/rooms/{room_id}/switchWindowsOn")

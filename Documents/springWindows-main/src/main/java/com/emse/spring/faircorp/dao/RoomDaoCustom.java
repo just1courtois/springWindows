@@ -11,5 +11,6 @@ public interface RoomDaoCustom {
     List<Window> findAllWindows(Long room_id);
     List<Heater> findAllHeaters(Long room_id);
     void deleteByBuildingId(Long building_id);
+    void deleteRoom(Long room_id);
 
 }

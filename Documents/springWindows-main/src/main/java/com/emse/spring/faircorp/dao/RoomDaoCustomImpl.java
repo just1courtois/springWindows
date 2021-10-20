@@ -17,7 +17,7 @@ public class RoomDaoCustomImpl implements RoomDaoCustom {
 
     @Override
     public List<Room> findRoom(Long id) {
-        String jpql = "select w from Room where id = :id";
+        String jpql = "select w from Window where id = :id";
         return em.createQuery(jpql, Room.class)
                 .setParameter("id", id)
                 .getResultList();
@@ -25,7 +25,7 @@ public class RoomDaoCustomImpl implements RoomDaoCustom {
 
     @Override
     public List<Window> findAllWindows(Long room_id) {
-        String jpql = "select w from Room where w.room.id = :id";
+        String jpql = "select w from Window where w.room.id = :id";
         return em.createQuery(jpql, Window.class)
                 .setParameter("id", room_id)
                 .getResultList();
@@ -41,10 +41,25 @@ public class RoomDaoCustomImpl implements RoomDaoCustom {
 
     @Override
     public void deleteByBuildingId(Long building_id){
-        String jpql = "select r from Room where r.building.id = :id";
-
+      //à faire
     }
 
+
+    @Override
+    public void deleteRoom(Long room_id){
+        String jpql = "delete r from Room where r.id = :id";
+        String jpqlw = "delete w from Window where w.room.id = :id";
+        String jpqlh = "delete h from Heater where h.room.id = :id";
+        em.createQuery(jpql)
+                .setParameter("id", room_id)
+                .executeUpdate();
+        em.createQuery(jpqlh)
+                .setParameter("id", room_id)
+                .executeUpdate();
+        em.createQuery(jpqlw)
+                .setParameter("id", room_id)
+                .executeUpdate();
+    }
 
 
 }
